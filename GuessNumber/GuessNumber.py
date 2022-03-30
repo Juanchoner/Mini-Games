@@ -14,8 +14,6 @@ class GuessNumberScreen(tkinter.Frame):
         self.user_message = tkinter.StringVar()
         self.machine_message = tkinter.StringVar()
 
-        self.win_message = tkinter.StringVar()
-
         self.num_min = 0
         self.num_max = 100
 
@@ -70,7 +68,11 @@ class GuessNumberScreen(tkinter.Frame):
             self.machine_message.set(self.message(number_selected))
 
     def start_game(self):
-        number_user = self.user_selection.get()
+        try:
+            number_user = self.user_selection.get()
+        except tkinter.TclError:
+            self.user_message.set('Favor de ingresar un número...')
+            return
         self.message_info(number_user, "usuario")
         number_machine = self.number_machine()
         self.message_info(number_machine, 'máquina')
@@ -84,12 +86,13 @@ class GuessNumberScreen(tkinter.Frame):
         self.controller.show_frame('MenuGames')
 
     def creat_widgets(self):
-        tkinter.Label(self, text='Adivina el número del 0 al 100').grid(column=0, row=0, sticky=tkinter.NSEW)
+        tkinter.Label(self, text='Adivina el número del 0 al 100', **styles.TITLES).grid(column=0, row=0, sticky=tkinter.NSEW)
         tkinter.Entry(self, textvariable=self.user_selection).grid(column=0, row=1, sticky=tkinter.NSEW)
         tkinter.Button(self, text='Seleccionar', command=self.start_game).grid(column=0, row=2, sticky = tkinter.NSEW)
-        tkinter.Label(self, textvariable=self.user_message).grid(column=0, row=3, sticky = tkinter.NSEW)
-        tkinter.Label(self, text='La máquina a seleccionado:').grid(column=0, row=4, sticky = tkinter.NSEW)
-        tkinter.Label(self, textvariable=self.show_machine_selection).grid(column=0, row=5, sticky = tkinter.NSEW)
-        tkinter.Label(self, textvariable=self.machine_message).grid(column=0, row=6, sticky = tkinter.NSEW)
-        tkinter.Label(self, textvariable=self.win_message).grid(column=0, row=7, sticky = tkinter.NSEW)
+        tkinter.Label(self, textvariable=self.user_message, **styles.LABELS).grid(column=0, row=3, sticky = tkinter.NSEW)
+        tkinter.Label(self, text='La máquina a seleccionado:', **styles.LABELS).grid(column=0, row=4, sticky = tkinter.NSEW)
+        tkinter.Label(self, textvariable=self.show_machine_selection, **styles.LABELS).grid(column=0, row=5, sticky = tkinter.NSEW)
+        tkinter.Label(self, textvariable=self.machine_message, **styles.LABELS).grid(column=0, row=6, sticky = tkinter.NSEW)
         tkinter.Button(self, text='⏮', command=self.back_menu).grid(column=0, row=8, sticky=tkinter.NSEW)
+
+        self.grid_columnconfigure(0, weight=1)
