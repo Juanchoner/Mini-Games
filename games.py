@@ -28,5 +28,6 @@ class MenuGames(tkinter.Frame):
         tkinter.Button(self, image=self.rock_paper_scissors_img, command=lambda: self.controller.show_frame("RockPaperScissorsScreen")).grid(column=0, row=1)
         tkinter.Button(self, image=self.guess_number_img, command=lambda: self.controller.show_frame("GuessNumberScreen")).grid(column=0, row=2)
         tkinter.Button(self, image=self.dice_simulator_img, command=lambda: self.controller.show_frame("DiceSimulatorScreen")).grid(column=0, row=3)
+        tkinter.Button(self, text='Hangman', command=lambda: self.controller.show_frame("HangmanScreen")).grid(column=0, row=4)
 
         self.grid_columnconfigure(0, weight=1)

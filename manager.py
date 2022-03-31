@@ -4,6 +4,7 @@ from games import MenuGames
 from RockPaperScissors.RockPaperScissors import RockPaperScissorsScreen
 from GuessNumber.GuessNumber import GuessNumberScreen
 from Dices.DiceSimulator import DiceSimulatorScreen
+from Hangman.Hangman import HangmanScreen
 
 class Manager(tkinter.Tk):
     def __init__(self, *args, **kwargs):
@@ -21,7 +22,15 @@ class Manager(tkinter.Tk):
 
         self.frames = {}
 
-        for screen in (MenuGames, RockPaperScissorsScreen, GuessNumberScreen, DiceSimulatorScreen):
+        screens = (
+            MenuGames,
+            RockPaperScissorsScreen,
+            GuessNumberScreen, 
+            DiceSimulatorScreen,
+            HangmanScreen
+            )
+
+        for screen in screens:
             name_screen = screen.__name__
             frame = screen(container, self)
             self.frames[name_screen] = frame
