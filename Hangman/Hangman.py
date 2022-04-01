@@ -51,7 +51,6 @@ class HangmanScreen(tkinter.Frame):
                     only_lines[pos_letter] = letter_button
                     self.show_lines.set(' '.join(only_lines))
         if self.show_lines.get().replace(' ', '') == self.word:
-            print('Has ganado')
             msg = 'Has ganado esta partida 😀\nel juego se reiniciará'
             messagebox.showinfo('Felicidades!!!', msg)
             self.random_word()

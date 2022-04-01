@@ -5,6 +5,7 @@ from RockPaperScissors.RockPaperScissors import RockPaperScissorsScreen
 from GuessNumber.GuessNumber import GuessNumberScreen
 from Dices.DiceSimulator import DiceSimulatorScreen
 from Hangman.Hangman import HangmanScreen
+from TicTacToe.TicTacToe import TicTacToeScreen
 
 class Manager(tkinter.Tk):
     def __init__(self, *args, **kwargs):
@@ -27,7 +28,8 @@ class Manager(tkinter.Tk):
             RockPaperScissorsScreen,
             GuessNumberScreen, 
             DiceSimulatorScreen,
-            HangmanScreen
+            HangmanScreen,
+            TicTacToeScreen
             )
 
         for screen in screens:
