@@ -25,17 +25,19 @@ class TicTacToeScreen(tkinter.Frame):
         self.sign_o = tkinter.PhotoImage(file=os.path.join(self.root_path, self.sign_images[2]))
 
         self.toggle = 1
+        self.attempts = 0
 
         self.board_spaces = ['' for i in range(9)]
 
         self.create_widgets()
 
     def reset_game(self):
+        self.toggle = 1
+        self.attempts = 0
         for value in self.reference_buttons.values():
             value.configure(image=self.sing_empty, state=tkinter.NORMAL)
-        for spaces in range(0, 8):
+        for spaces in range(0, 9):
             self.board_spaces[spaces] = ''
-        self.toggle = 1
 
     def check_spaces(self, sign_player: str):
         flag = False
@@ -63,18 +65,24 @@ class TicTacToeScreen(tkinter.Frame):
             msg = f'A ganado el jugador con el simbolo: {sign_player}\nel juego se reiniciará'
             messagebox.showinfo('Atención', msg)
             self.reset_game()
+            return
+        if self.attempts == 9:
+            msg = f'EMPATE el juego se reiniciará'
+            messagebox.showinfo('Atención', msg)
+            self.reset_game()
 
     def clic_button(self, id_button: int):
         if self.toggle == 1:
+            self.toggle = 0
             self.reference_buttons[id_button].configure(image=self.sign_x, state=tkinter.DISABLED)
             self.board_spaces[id_button - 1] = 'X'
             self.check_spaces('X')
-            self.toggle = 0
         else:
+            self.toggle = 1
             self.reference_buttons[id_button].configure(image=self.sign_o, state=tkinter.DISABLED)
             self.board_spaces[id_button - 1] = 'O'
             self.check_spaces('O')
-            self.toggle = 1
+        self.attempts += 1
 
     def back_menu(self):
         self.reset_game()
