@@ -16,7 +16,8 @@ class MenuGames(tkinter.Frame):
             1: os.path.join('assets', 'Menu', 'GuessNumber.png'),
             2: os.path.join('assets', 'Menu', 'DiceSimulator.png'),
             3: os.path.join('assets', 'Menu', 'Hangman.png'),
-            4: os.path.join('assets', 'Menu', 'TicTacToe.png')
+            4: os.path.join('assets', 'Menu', 'TicTacToe.png'),
+            5: os.path.join('assets', 'Menu', 'Calculator.png')
         }
 
         self.rock_paper_scissors_img = tkinter.PhotoImage(file=os.path.join(self.root_path, self.game_images[0]))
@@ -24,6 +25,7 @@ class MenuGames(tkinter.Frame):
         self.dice_simulator_img = tkinter.PhotoImage(file=os.path.join(self.root_path, self.game_images[2]))
         self.hangman_img = tkinter.PhotoImage(file=os.path.join(self.root_path, self.game_images[3]))
         self.tictactoe_img = tkinter.PhotoImage(file=os.path.join(self.root_path, self.game_images[4]))
+        self.calculator_img = tkinter.PhotoImage(file=os.path.join(self.root_path, self.game_images[5]))
 
         self.create_widgets()
 
@@ -38,5 +40,6 @@ class MenuGames(tkinter.Frame):
         tkinter.Button(games_images, image=self.dice_simulator_img, command=lambda: self.controller.show_frame("DiceSimulatorScreen")).grid(column=1, row=0)
         tkinter.Button(games_images, image=self.hangman_img, command=lambda: self.controller.show_frame("HangmanScreen")).grid(column=1, row=1)
         tkinter.Button(games_images, image=self.tictactoe_img, command=lambda: self.controller.show_frame("TicTacToeScreen")).grid(column=0, row=2)
+        tkinter.Button(games_images, image=self.calculator_img, command=lambda: self.controller.show_frame("CalculatorScreen")).grid(column=1, row=2)
 
         self.grid_columnconfigure(0, weight=1)
